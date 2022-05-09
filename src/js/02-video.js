@@ -11,18 +11,8 @@ const player = new Player('handstick', {
 player.on(
   'timeupdate',
   throttle(data => {
-    setVideoPlayerCurrentTime(data.seconds);
+    localStorage.setItem(currentTimeKey, data.seconds);
   }, 1000),
 );
 
-if (getVideoPlayerCurrentTime() !== null) {
-  player.setCurrentTime(getVideoPlayerCurrentTime());
-}
-
-function setVideoPlayerCurrentTime(currentTime) {
-  localStorage.setItem(currentTimeKey, currentTime);
-}
-
-function getVideoPlayerCurrentTime() {
-  return localStorage.getItem(currentTimeKey);
-}
+player.setCurrentTime(localStorage.getItem(currentTimeKey) ?? 0);
