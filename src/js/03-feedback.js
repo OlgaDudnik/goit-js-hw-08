@@ -7,6 +7,11 @@ const storageName = 'feedback-form-state';
 
 form.addEventListener('submit', e => {
   e.preventDefault();
+
+  if (!email.value || !message.value) {
+    return;
+  }
+
   console.log(JSON.parse(localStorage.getItem(storageName)));
   form.reset();
   localStorage.removeItem(storageName);
