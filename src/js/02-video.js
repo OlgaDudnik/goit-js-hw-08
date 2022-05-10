@@ -15,4 +15,7 @@ player.on(
   }, 1000),
 );
 
-player.setCurrentTime(localStorage.getItem(currentTimeKey) ?? 0);
+const currentTimeInStorage = localStorage.getItem(currentTimeKey);
+if (currentTimeInStorage) {
+  player.setCurrentTime(currentTimeInStorage);
+}
